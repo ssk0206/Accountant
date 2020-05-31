@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server:
+    image: golang:1.13
+    ports:
+      - "8080:8080"
+    container_name: server-container
+    volumes:
+      - ./:/go/src
+    working_dir: /go/src
+    tty: true
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=accountant
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root

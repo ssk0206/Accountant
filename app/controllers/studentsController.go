@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/ssk0206/accountant/server/models"
+	"github.com/ssk0206/accountant/app/models"
 )
 
 func GetAllStudents(c *gin.Context) {

@@ -2,18 +2,18 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
+
+	"github.com/ssk0206/accountant/app/controllers"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/ssk0206/Accountant/server/controllers"
 )
 
 var (
@@ -23,7 +23,7 @@ var (
 )
 
 func init() {
-	err := godotenv.Load(fmt.Sprintf("../.env"))
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatalln("Failed to load .env")
 	}
@@ -35,9 +35,8 @@ func init() {
 
 func gormConnect() *gorm.DB {
 	DBMS := "mysql"
-	// PROTOCOL := ""
-	// CONNECT := dbuser + ":" + dbpass + "@" + PROTOCOL + "/" + dbname
-	CONNECT := "root:@/accountant"
+	PROTOCOL := "tcp(mysql:3306)"
+	CONNECT := dbuser + ":" + dbpass + "@" + PROTOCOL + "/" + dbname
 	db, err := gorm.Open(DBMS, CONNECT)
 	db.LogMode(true)
 	if err != nil {
