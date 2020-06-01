@@ -1,18 +1,17 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 
 	"github.com/ssk0206/accountant/app/controllers"
+	"github.com/ssk0206/accountant/db"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -33,31 +32,11 @@ func init() {
 	dbname = os.Getenv("DB")
 }
 
-func gormConnect() *gorm.DB {
-	DBMS := "mysql"
-	PROTOCOL := "tcp(mysql:3306)"
-	CONNECT := dbuser + ":" + dbpass + "@" + PROTOCOL + "/" + dbname
-	db, err := gorm.Open(DBMS, CONNECT)
-	db.LogMode(true)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	return db
-}
-
 func main() {
-	db := gormConnect()
+	db.GormConnect(dbuser, dbpass, dbname)
 	defer db.Close()
-	// mysql()
-	log.Fatalln(serve())
-}
 
-func mysql() {
-	db, err := sql.Open("mysql", "root:@/accountant")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close() // 関数がリターンする直前に呼び出される
+	log.Fatalln(serve())
 }
 
 func serve() error {
@@ -68,6 +47,7 @@ func serve() error {
 	router.Use(cors.New(config))
 
 	router.GET("/students", controllers.GetAllStudents)
+	router.GET("/students/:roomid", controllers.ShowStudent)
 
 	if err := router.Run(":8080"); err != nil {
 		return err
