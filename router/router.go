@@ -15,6 +15,7 @@ func NewRouter() *gin.Engine {
 
 	router.GET("/students", controllers.GetAllStudents)
 	router.GET("/students/:roomid", controllers.ShowStudent)
+	router.POST("/students", controllers.CreateStudent)
 
 	return router
 }

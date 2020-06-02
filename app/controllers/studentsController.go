@@ -1,36 +1,48 @@
 package controllers
 
 import (
-	"log"
+	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/ssk0206/accountant/app/models"
 	"github.com/ssk0206/accountant/app/repository"
 )
 
 func GetAllStudents(c *gin.Context) {
 	repo := repository.NewStudentRepo()
 	students := repo.GetAll()
-	c.JSON(200, students)
+	c.JSON(http.StatusOK, students)
 }
 
 func ShowStudent(c *gin.Context) {
 	repo := repository.NewStudentRepo()
 	roomid, err := strconv.Atoi(c.Param("roomid"))
 	if err != nil {
-		log.Fatalln("Failed to Atoi(): ", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	student, ok := repo.GetByRoomID(roomid)
 	if ok == false {
-		c.JSON(404, student)
+		c.JSON(http.StatusNotFound, student)
 		return
 	}
-	c.JSON(200, student)
+	c.JSON(http.StatusOK, student)
 }
 
-// func CreateStudent(c *gin.Context) {
-// 	student1 := models.Student{Name: "赤城 武彦", RoomID: "101", PreMeterValue: 2000, NewMeterValue: 2010, Bill: 200}
-// 	db.Db.Create(&student1)
-// 	c.JSON(201, student1)
-// }
+func CreateStudent(c *gin.Context) {
+	repo := repository.NewStudentRepo()
+
+	newStudent := models.Student{}
+	if err := c.BindJSON(&newStudent); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	student, err := repo.Create(newStudent)
+	if err != nil {
+		c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusCreated, student)
+}
