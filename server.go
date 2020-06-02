@@ -6,11 +6,9 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/ssk0206/accountant/app/controllers"
 	"github.com/ssk0206/accountant/db"
+	"github.com/ssk0206/accountant/router"
 
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
@@ -36,21 +34,8 @@ func main() {
 	db.GormConnect(dbuser, dbpass, dbname)
 	defer db.Close()
 
-	log.Fatalln(serve())
-}
-
-func serve() error {
-	router := gin.Default()
-
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:8081"}
-	router.Use(cors.New(config))
-
-	router.GET("/students", controllers.GetAllStudents)
-	router.GET("/students/:roomid", controllers.ShowStudent)
-
-	if err := router.Run(":8080"); err != nil {
-		return err
+	r := router.NewRouter()
+	if err := r.Run(":8080"); err != nil {
+		log.Fatalln(err)
 	}
-	return nil
 }

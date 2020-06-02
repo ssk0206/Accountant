@@ -25,6 +25,7 @@ require (
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
 	github.com/nakagami/firebirdsql v0.0.0-20200524013450-1ea0be23737c // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
+	github.com/stretchr/testify v1.6.0
 	github.com/xanzy/go-gitlab v0.32.0 // indirect
 	go.mongodb.org/mongo-driver v1.3.3 // indirect
 	golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37 // indirect
