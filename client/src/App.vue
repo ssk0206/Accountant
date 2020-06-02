@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <sidebar-menu :menu="menu" :width="widthstyle"  />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,6 +8,30 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import { SidebarMenu } from 'vue-sidebar-menu'
+export default {
+  components: {
+    SidebarMenu
+  },
+  data() {
+    return {
+      menu: [
+        {
+          hiddenOnCollapse: true
+        },
+        {
+          href: '/',
+          title: 'Home',
+          icon: 'fa fa-user'
+        },
+      ],
+      widthstyle: "250px"
+    }
+  },
+}
+</script>
 
 <style>
 #app {

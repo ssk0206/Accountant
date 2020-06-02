@@ -6,7 +6,8 @@ import locale from 'element-ui/lib/locale/lang/ja'
 import VueGoodTablePlugin from 'vue-good-table'
 // import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import 'vue-good-table/dist/vue-good-table.css'
 
 import './styles.scss'
@@ -21,6 +22,7 @@ const axios = axiosBase.create({
 });
 
 Vue.use(ElementUI, { locale })
+Vue.use(VueSidebarMenu)
 Vue.use(VueAxios, axios)
 Vue.use(VueGoodTablePlugin)
 
