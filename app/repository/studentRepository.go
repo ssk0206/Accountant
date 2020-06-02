@@ -25,3 +25,10 @@ func (s *studentRepo) GetByRoomID(roomID int) (models.Student, bool) {
 	}
 	return student, true
 }
+
+func (s *studentRepo) Create(student models.Student) (models.Student, error) {
+	if err := db.Db.Create(&student).Error; err != nil {
+		return student, err
+	}
+	return student, nil
+}
