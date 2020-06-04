@@ -2,11 +2,12 @@
   <div id="app">
     <sidebar-menu />
     <div id="nav">
-      <font-awesome-icon icon="coffee"></font-awesome-icon>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <div id="body-container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -39,5 +40,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#body-container {
+  margin: 0 100px;
 }
 </style>

@@ -1,8 +1,5 @@
 <template>
-  <sidebar-menu :menu="menu" :width="widthstyle" :collapsed="true" >
-      <font-awesome-icon slot="collapse-icon" :icon="'arrows-alt-h'"></font-awesome-icon>
-      <font-awesome-icon slot="dropdown-icon" :icon="'angle-right'"></font-awesome-icon>
-  </sidebar-menu>
+  <sidebar-menu :menu="menu" :width="widthstyle" :collapsed="true" ></sidebar-menu>
 </template>
 
 <script>
