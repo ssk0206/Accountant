@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <sidebar-menu :menu="menu" :width="widthstyle"  />
+    <sidebar-menu />
     <div id="nav">
+      <font-awesome-icon icon="coffee"></font-awesome-icon>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -10,25 +11,10 @@
 </template>
 
 <script>
-import { SidebarMenu } from 'vue-sidebar-menu'
+import SidebarMenu  from '@/components/Sidebar.vue'
 export default {
   components: {
     SidebarMenu
-  },
-  data() {
-    return {
-      menu: [
-        {
-          hiddenOnCollapse: true
-        },
-        {
-          href: '/',
-          title: 'Home',
-          icon: 'fa fa-user'
-        },
-      ],
-      widthstyle: "250px"
-    }
   },
 }
 </script>
