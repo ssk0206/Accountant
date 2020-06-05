@@ -6,9 +6,13 @@ import locale from 'element-ui/lib/locale/lang/ja'
 import VueGoodTablePlugin from 'vue-good-table'
 // import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueSidebarMenu from 'vue-sidebar-menu'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import 'vue-good-table/dist/vue-good-table.css'
-
+import '@fortawesome/fontawesome-free/css/all.css'
 import './styles.scss'
 
 const axiosBase = require('axios');
@@ -20,7 +24,10 @@ const axios = axiosBase.create({
   responseType: 'json'
 });
 
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 Vue.use(ElementUI, { locale })
+Vue.use(VueSidebarMenu)
 Vue.use(VueAxios, axios)
 Vue.use(VueGoodTablePlugin)
 

@@ -1,0 +1,15 @@
+.v-sidebar-menu.vsm_collapsed, .v-sidebar-menu.vsm_expanded
+{
+    background-color: rgb(36, 44, 63);
+}
+
+.v-sidebar-menu .vsm--mobile-item {
+    background-color: white;
+}
+
+.v-sidebar-menu.vsm_collapsed
+.vsm--mobile-bg,
+.vsm--link.vsm--link_level-1.vsm--link_exact-active
+{
+    background-color: rgb(67, 83, 119);
+}
