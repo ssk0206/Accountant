@@ -1,8 +1,24 @@
 <template>
-  <div>
+  <div class="table-container">
     <vue-good-table
       :columns="columns"
-      :rows="rows"/>
+      :rows="rows"
+      styleClass="vgt-table condensed bordered"
+      :select-options="{ enabled: true }"
+      :search-options="{ enabled: true }"
+      max-height="600px"
+      :fixed-header="true"
+      :line-numbers="true"
+      >
+      <template slot="table-row" slot-scope="props">
+        <span v-if="props.column.field == 'bill'">
+          <span style="font-weight: bold;">{{props.row.bill}}円</span>
+        </span>
+        <span v-else>
+          {{props.formattedRow[props.column.field]}}
+        </span>
+      </template>
+    </vue-good-table>
   </div>
 </template>
 
@@ -13,7 +29,7 @@ export default {
     return {
       columns: [
         {
-          label: 'Name',
+          label: '名前',
           field: 'name',
         },
         {
@@ -22,12 +38,12 @@ export default {
           type: 'number',
         },
         {
-          label: '前のメーター値',
+          label: 'メーター値(前)',
           field: 'pre_meter_val',
           type: 'number',
         },
         {
-          label: '今のメーター値',
+          label: 'メーター値(今)',
           field: 'new_meter_val',
           type: 'number',
         },
@@ -57,3 +73,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.table-container {
+  width: 800px;
+  margin: auto;
+}
+</style>

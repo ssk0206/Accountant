@@ -14,8 +14,8 @@ export default {
       menu: [
         {
           href: '/',
-          title: 'Home',
-          icon: 'el-icon-s-grid'
+          title: '電気料金表',
+          icon: 'el-icon-s-grid',
         },
       ],
       widthstyle: "200px",
