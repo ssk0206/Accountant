@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="list">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <bill-table />
   </div>
@@ -10,9 +10,13 @@
 import BillTable from '@/components/BillTable.vue'
 
 export default {
-  name: 'Home',
+  name: 'List',
   components: {
     BillTable
+  },
+  props: {
+    columns: Array,
+    rows: Array,
   }
 }
 </script>
