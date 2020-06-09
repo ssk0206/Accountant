@@ -1,12 +1,8 @@
 <template>
   <div id="home">
     <sidebar-menu />
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <div id="body-container">
-      <router-view/>
+      <router-view :studentData="rows" />
     </div>
   </div>
 </template>
@@ -16,6 +12,34 @@ import SidebarMenu  from '@/components/Sidebar.vue'
 export default {
   components: {
     SidebarMenu
+  },
+  data() {
+    return {
+      studentData: [
+        ['201', "桜木 花道", 11, 12, 13, 1],
+        ['202', "流川", 11, 14, 13],
+        ['211', "赤木", 15, 12, 13],
+        ['201', "桜木", 11, 12, 13, 1],
+        ['202', "流川", 11, 14, 13],
+        ['211', "赤木", 15, 12, 13],
+      ],
+      rows: [],
+    }
+  },
+  created: function() {
+    this.getAllData()
+  },
+  methods: {
+    getAllData() {
+      this.axios.get("/students")
+      .then(response => {
+        if (response.status != 200) {
+          console.log("レスポンスエラー")
+        } else {
+          this.rows = response.data
+        }
+      })
+    }
   },
 }
 </script>
@@ -28,15 +52,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   background-color: #f4fbff;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 #body-container {
