@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import List from '../views/List.vue'
+import StudentsManagement from '../views/StudentsManagement.vue'
 import Spreadsheet from '../views/Spreadsheet.vue'
 
 Vue.use(VueRouter)
@@ -8,8 +8,8 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'List',
-    component: List
+    name: 'StudentsManagement',
+    component: StudentsManagement
   },
   {
     path: '/spreadsheet',

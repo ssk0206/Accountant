@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -17,7 +18,7 @@ func GetAllStudents(c *gin.Context) {
 
 func ShowStudent(c *gin.Context) {
 	repo := repository.NewStudentRepo()
-	roomid, err := strconv.Atoi(c.Param("roomid"))
+	roomid, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -39,6 +40,7 @@ func CreateStudent(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	log.Println(newStudent)
 	student, err := repo.Create(newStudent)
 	if err != nil {
 		c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
