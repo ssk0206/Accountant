@@ -37,9 +37,15 @@ export default {
       });
     },
     handleDelete(index, student) {
-      this.axios.delete("/students", student.id).then((response) => {
-        console.log(response.status);
-      });
+      this.axios
+        .delete("/students", {
+          data: student,
+        })
+        .then((response) => {
+          if (response.status != 204) {
+            window.location.reload();
+          }
+        });
     },
   },
 };

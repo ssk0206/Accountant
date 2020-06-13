@@ -32,3 +32,10 @@ func (s *studentRepo) Create(student models.Student) (models.Student, error) {
 	}
 	return student, nil
 }
+
+func (s *studentRepo) Delete(student models.Student, roomID string) error {
+	if err := db.Db.Where("id = ?", roomID).Delete(&student).Error; err != nil {
+		return err
+	}
+	return nil
+}

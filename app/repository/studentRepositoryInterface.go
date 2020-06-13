@@ -6,4 +6,5 @@ type StudentRepositoryInterface interface {
 	GetAll() []models.Student
 	GetByRoomID(roomID int) (models.Student, bool)
 	Create(student models.Student) (models.Student, error) // errorの実装に関しては疑問 status_codeを返すべき?
+	Delete(student models.Student, roomID string) error
 }

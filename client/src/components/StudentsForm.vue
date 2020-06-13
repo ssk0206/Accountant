@@ -25,8 +25,9 @@ export default {
     onSubmit() {
       console.log(this.student);
       this.axios.post("/students", this.student).then((response) => {
-        if (response.status != 201) {
+        if (response.status == 201) {
           console.log("新規登録できませんでした");
+          window.location.reload(); // ページごとリロード
         }
       });
     },
