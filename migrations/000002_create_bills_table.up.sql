@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS bills (
     id INT AUTO_INCREMENT NOT NULL,
-    roomid INT (3) UNIQUE NOT NULL,
+    roomid VARCHAR (3) UNIQUE NOT NULL,
     start_date VARCHAR(100),
     pre_meter_value FLOAT,
     new_meter_value FLOAT,

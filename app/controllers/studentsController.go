@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -39,6 +40,7 @@ func CreateStudent(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	log.Println(newStudent)
 	student, err := repo.Create(newStudent)
 	if err != nil {
 		c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
