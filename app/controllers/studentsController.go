@@ -17,7 +17,7 @@ func GetAllStudents(c *gin.Context) {
 
 func ShowStudent(c *gin.Context) {
 	repo := repository.NewStudentRepo()
-	roomid, err := strconv.Atoi(c.Param("roomid"))
+	roomid, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

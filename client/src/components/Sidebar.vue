@@ -22,6 +22,11 @@ export default {
           title: 'スプレッドシート',
           icon: 'el-icon-s-grid',
         },
+        {
+           href: '/',
+           title: '寮生管理',
+           icon: 'fa fa-address-book'
+        }
       ],
       widthstyle: "200px",
     }
@@ -38,5 +43,9 @@ export default {
 
 #home > div.v-sidebar-menu > div > div.vsm--list > div:nth-child(2) > a > i {
   background-color: rgb(54, 180, 128);
+}
+
+#home > div.v-sidebar-menu > div > div.vsm--list > div:nth-child(3) > a > i {
+  background-color: rgb(219, 149, 43);
 }
 </style>
