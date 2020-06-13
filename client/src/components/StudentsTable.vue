@@ -4,20 +4,10 @@
       :columns="columns"
       :rows="rows"
       styleClass="vgt-table condensed bordered"
-      :select-options="{ enabled: true }"
       :search-options="{ enabled: true }"
       max-height="600px"
-      :fixed-header="true"
       :line-numbers="true"
       >
-      <template slot="table-row" slot-scope="props">
-        <span v-if="props.column.field == 'bill'">
-          <span style="font-weight: bold;">{{props.row.bill}}円</span>
-        </span>
-        <span v-else>
-          {{props.formattedRow[props.column.field]}}
-        </span>
-      </template>
     </vue-good-table>
   </div>
 </template>
@@ -29,28 +19,15 @@ export default {
     return {
       columns: [
         {
+          label: '部屋番号',
+          field: 'id',
+          type: 'number',
+          width: '80px'
+        },
+        {
           label: '名前',
           field: 'name',
-        },
-        {
-          label: '部屋番号',
-          field: 'roomid',
-          type: 'number',
-        },
-        {
-          label: 'メーター値(前)',
-          field: 'pre_meter_val',
-          type: 'number',
-        },
-        {
-          label: 'メーター値(今)',
-          field: 'new_meter_val',
-          type: 'number',
-        },
-        {
-          label: '電気料金',
-          field: 'bill',
-          type: 'number',
+          width: '120px'
         },
       ],
       rows: [],
@@ -76,7 +53,7 @@ export default {
 
 <style>
 .table-container {
-  width: 800px;
-  margin: auto;
+  width: 320px;
+  margin: 0 100px;
 }
 </style>

@@ -1,18 +1,17 @@
 <template>
-  <div class="list">
+  <div class="students-table">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <bill-table />
+    <students-table />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import BillTable from '@/components/BillTable.vue'
+import StudentsTable from '@/components/StudentsTable.vue'
 
 export default {
-  name: 'List',
   components: {
-    BillTable
+    StudentsTable
   },
   props: {
     columns: Array,
