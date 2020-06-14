@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS bills (
     pre_meter_value FLOAT,
     new_meter_value FLOAT,
     bill FLOAT,
+    additional_fee FLOAT,
+    remark VARCHAR(200),
     created_at datetime,
     updated_at datetime,
     deleted_at datetime,

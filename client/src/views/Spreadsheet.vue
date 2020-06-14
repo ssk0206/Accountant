@@ -27,7 +27,7 @@ export default {
     formattedStudentData() {
       let arr = this.studentData.map((element) => {
         return Object.values(element).filter((val, i) => {
-          return i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || i == 6;
+          return i != 7;
         });
       });
       return arr;

@@ -15,13 +15,14 @@ export default {
     hotSettings() {
       return {
         data: this.studentData,
-        colWidths: [80, 100, 120, 120, 120, 200],
+        colWidths: [80, 100, 120, 120, 120, 120, 200],
         colHeaders: [
           "部屋番号",
           "名前",
           "メーター値(旧)",
           "メーター値(新)",
           "料金",
+          "追加料金",
           "備考",
         ],
         rowHeaders: [],

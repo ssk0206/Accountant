@@ -12,12 +12,12 @@ func NewBillRepo() BillRepositoryInterface {
 	return &billRepo{}
 }
 
-func (b *billRepo) GetAll(period string) ([]models.Bill, error) {
-	bills := make([]models.Bill, 0)
-	if err := db.Db.Where("period = ?", period).Find(&bills).Error; err != nil {
+func (b *billRepo) GetAll(period string) ([]models.Response, error) {
+	res := make([]models.Response, 0)
+	if err := db.Db.Table("bills").Select("students.id, name, pre_meter_value, new_meter_value, bill, period, additional_fee, remark").Where("period = ?", period).Joins("left join students on students.id = bills.room_id").Scan(&res).Error; err != nil {
 		return nil, err
 	}
-	return bills, nil
+	return res, nil
 }
 
 func (b *billRepo) CreateBillPage(period string) error {
