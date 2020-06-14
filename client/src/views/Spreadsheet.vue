@@ -1,6 +1,9 @@
 <template>
   <div class="spread">
-    <Spreadsheet :studentData="formattedStudentData" />
+    <div>
+      <div>{{ yearMonth }}</div>
+      <Spreadsheet :studentData="formattedStudentData" />
+    </div>
     <div class="buttons">
       <el-row>
         <el-button type="primary" v-on:click="update">寮生情報更新</el-button>
