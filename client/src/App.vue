@@ -2,46 +2,18 @@
   <div id="home">
     <sidebar-menu />
     <div id="body-container">
-      <router-view :studentData="rows" />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import SidebarMenu  from '@/components/Sidebar.vue'
+import SidebarMenu from "@/components/Sidebar.vue";
 export default {
   components: {
-    SidebarMenu
+    SidebarMenu,
   },
-  data() {
-    return {
-      studentData: [
-        ['201', "桜木 花道", 11, 12, 13, 1],
-        ['202', "流川", 11, 14, 13],
-        ['211', "赤木", 15, 12, 13],
-        ['201', "桜木", 11, 12, 13, 1],
-        ['202', "流川", 11, 14, 13],
-        ['211', "赤木", 15, 12, 13],
-      ],
-      rows: [],
-    }
-  },
-  created: function() {
-    this.getAllData()
-  },
-  methods: {
-    getAllData() {
-      this.axios.get("/students")
-      .then(response => {
-        if (response.status != 200) {
-          console.log("レスポンスエラー")
-        } else {
-          this.rows = response.data
-        }
-      })
-    }
-  },
-}
+};
 </script>
 
 <style>
