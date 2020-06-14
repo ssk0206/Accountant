@@ -20,7 +20,7 @@ func (s *studentRepo) GetAll() []models.Student {
 
 func (s *studentRepo) GetByRoomID(roomID int) (models.Student, bool) {
 	student := models.Student{}
-	if db.Db.Find(&student, "room_id=?", roomID).RecordNotFound() {
+	if db.Db.Find(&student, "id=?", roomID).RecordNotFound() {
 		return student, false
 	}
 	return student, true
