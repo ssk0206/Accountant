@@ -10,7 +10,10 @@ import (
 func GetBills(c *gin.Context) {
 	repo := repository.NewBillRepo()
 	period := c.Query("period")
-	bills := repo.GetAll(period)
+	bills, err := repo.GetAll(period)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, nil)
+	}
 	c.JSON(http.StatusOK, bills)
 }
 
