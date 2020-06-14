@@ -22,7 +22,7 @@ func (b *billRepo) GetAll(period string) ([]models.Bill, error) {
 
 func (b *billRepo) CreateBillPage(period string) error {
 	// INSERT INTO テーブル1(N1, N2, N3) SELECT C1, C2, C3 FROM テーブル2 WHERE 条件式;
-	if err := db.Db.Exec("INSERT INTO bills(roomid, period) SELECT id, " + "'" + period + "'" + " FROM students").Error; err != nil {
+	if err := db.Db.Exec("INSERT IGNORE INTO bills(room_id, period) SELECT id, " + "'" + period + "'" + " FROM students").Error; err != nil {
 		return err
 	}
 	return nil
