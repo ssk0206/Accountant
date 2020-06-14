@@ -1,34 +1,35 @@
 <template>
   <div class="spread">
     <Spreadsheet :studentData="formattedStudentData" />
+    {{ studentData }}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Spreadsheet from '@/components/Spread.vue'
+import Spreadsheet from "@/components/Spread.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Spreadsheet
+    Spreadsheet,
   },
   props: {
     studentData: {
       type: Array,
-    }
+    },
   },
   computed: {
-    formattedStudentData () {
-      let arr = this.studentData.map(element => {
+    formattedStudentData() {
+      let arr = this.studentData.map((element) => {
         return Object.values(element).filter((val, i) => {
-          return (i != 0 && i != 6 && i != 7);
-        })
+          return i == 0 || i == 1;
+        });
       });
-      return arr
-    }
+      return arr;
+    },
   },
-}
+};
 </script>
 
 <style>
