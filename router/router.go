@@ -14,9 +14,12 @@ func NewRouter() *gin.Engine {
 	router.Use(cors.New(config))
 
 	router.GET("/students", controllers.GetAllStudents)
-	router.GET("/students/:roomid", controllers.ShowStudent)
+	router.GET("/students/:id", controllers.ShowStudent)
 	router.POST("/students", controllers.CreateStudent)
 	router.DELETE("/students", controllers.DeleteStudent)
+
+	router.GET("/bills", controllers.GetBills)
+	router.POST("/bills", controllers.CreateBill)
 
 	return router
 }

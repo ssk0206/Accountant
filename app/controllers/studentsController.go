@@ -17,13 +17,13 @@ func GetAllStudents(c *gin.Context) {
 
 func ShowStudent(c *gin.Context) {
 	repo := repository.NewStudentRepo()
-	roomid, err := strconv.Atoi(c.Param("id"))
+	roomID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	student, ok := repo.GetByRoomID(roomid)
+	student, ok := repo.GetByRoomID(roomID)
 	if ok == false {
 		c.JSON(http.StatusNotFound, student)
 		return
