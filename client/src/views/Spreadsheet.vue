@@ -2,7 +2,7 @@
   <div class="spread">
     <div>
       <div>{{ yearMonth }}</div>
-      <Spreadsheet :studentData="formattedStudentData" />
+      <Spreadsheet />
     </div>
     <div class="buttons">
       <el-row>
@@ -21,20 +21,7 @@ export default {
   components: {
     Spreadsheet,
   },
-  data() {
-    return {
-      studentData: [],
-    };
-  },
   computed: {
-    formattedStudentData() {
-      let arr = this.studentData.map((element) => {
-        return Object.values(element).filter((val, i) => {
-          return i != 7;
-        });
-      });
-      return arr;
-    },
     yearMonth() {
       let today = new Date();
       let year = today.getFullYear();
@@ -57,17 +44,6 @@ export default {
     },
   },
   methods: {
-    getAllData() {
-      this.axios
-        .get("bills", { params: { period: this.period } })
-        .then((response) => {
-          if (response.status != 200) {
-            console.log("レスポンスエラー");
-          } else {
-            this.studentData = response.data;
-          }
-        });
-    },
     update() {
       this.axios.post("bills", { period: this.period }).then((response) => {
         if (response.status == 201) {
@@ -75,9 +51,6 @@ export default {
         }
       });
     },
-  },
-  created: function() {
-    this.getAllData();
   },
 };
 </script>
