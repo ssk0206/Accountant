@@ -50,11 +50,13 @@ export default {
             (source == "edit" ||
               source == "CopyPaste.paste" ||
               source == "Autofill.fill") &&
-            (changes[0][1] == 2 || changes[0][1] == 3)
+            (changes[0][1] == 2 || changes[0][1] == 3 || changes[0][1] == 5)
           ) {
             var row = changes[0];
             data[row[0]][row[1]] = Number(data[row[0]][row[1]]);
-            data[row[0]][4] = (data[row[0]][3] - data[row[0]][2]) * 20;
+            data[row[0]][4] =
+              (data[row[0]][3] - data[row[0]][2]) * 20 +
+              Number(data[row[0]][5]);
             this.render();
           }
         },
