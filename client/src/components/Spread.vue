@@ -45,17 +45,23 @@ export default {
           {},
           {},
         ],
-        afterChange: function(changes, source) {
-          if (
-            (source == "edit" ||
-              source == "CopyPaste.paste" ||
-              source == "Autofill.fill") &&
-            (changes[0][1] == 2 || changes[0][1] == 3)
-          ) {
-            var row = changes[0];
-            data[row[0]][row[1]] = Number(data[row[0]][row[1]]);
-            data[row[0]][4] = (data[row[0]][3] - data[row[0]][2]) * 20;
-            this.render();
+        afterChange: function(changes_arr, source) {
+          if (changes_arr) {
+            changes_arr.forEach((changes) => {
+              if (
+                (source == "edit" ||
+                  source == "CopyPaste.paste" ||
+                  source == "Autofill.fill") &&
+                (changes[1] == 2 || changes[1] == 3 || changes[1] == 5)
+              ) {
+                let row = changes[0];
+                let col = changes[1];
+                data[row][col] = Number(data[row][col]);
+                data[row][4] =
+                  (data[row][3] - data[row][2]) * 20 + Number(data[row][5]);
+                this.render();
+              }
+            });
           }
         },
       };
