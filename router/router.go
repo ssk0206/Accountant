@@ -20,6 +20,7 @@ func NewRouter() *gin.Engine {
 
 	router.GET("/bills", controllers.GetBills)
 	router.POST("/bills", controllers.CreateBill)
+	router.PUT("/bills", controllers.UpdateBill)
 
 	return router
 }

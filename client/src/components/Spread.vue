@@ -37,12 +37,19 @@ export default {
           {
             readOnly: true,
           },
-          {},
-          {},
+          {
+            type: "numeric",
+          },
+          {
+            type: "numeric",
+          },
           {
             readOnly: true,
+            type: "numeric",
           },
-          {},
+          {
+            type: "numeric",
+          },
           {},
         ],
         afterChange: function(changes_arr, source) {
@@ -67,21 +74,21 @@ export default {
       };
     },
     formattedStudentData() {
-      this.studentData.forEach((element) =>
-        Object.keys(element).forEach(function(key) {
-          if (key == "bill") {
-            element[key] =
-              (element["new-meter-value"] - element["pre-meter-value"]) * 20;
-          }
-        })
-      );
+      var data = [];
+      this.studentData.forEach((element) => {
+        var arr = [];
+        arr.push(element["room_id"]);
+        arr.push(element["name"]);
+        arr.push(element["pre_meter_value"]);
+        arr.push(element["new_meter_value"]);
+        arr.push(element["bill"]);
+        arr.push(element["additional_fee"]);
+        arr.push(element["remark"]);
+        arr.push(element["id"]);
 
-      let arr = this.studentData.map((element) => {
-        return Object.values(element).filter((val, i) => {
-          return i != 7;
-        });
+        data.push(arr);
       });
-      return arr;
+      return data;
     },
     yearMonth() {
       let today = new Date();
@@ -129,7 +136,25 @@ export default {
       });
     },
     submit() {
-      console.log(this.hotSettings.data);
+      var request = [];
+      this.hotSettings.data.forEach((element) => {
+        var map = {};
+        map["room_id"] = element[0];
+        map["name"] = element[1];
+        map["pre_meter_val"] = element[2];
+        map["new_meter_val"] = element[3];
+        map["bill"] = element[4];
+        map["additional_fee"] = element[5];
+        map["remark"] = element[6];
+        map["id"] = element[7];
+        request.push(map);
+      });
+
+      this.axios.put("bills", JSON.stringify(request)).then((response) => {
+        if (response.status != 204) {
+          console.log(response);
+        }
+      });
     },
   },
   created: function() {

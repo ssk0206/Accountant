@@ -17,12 +17,13 @@ type Bill struct {
 }
 
 type Response struct {
-	ID            string  `json:"id"`
+	ID            uint    `json:"id"`
 	Name          string  `json:"name"`
-	PreMeterValue float64 `json:"pre-meter-value"`
-	NewMeterValue float64 `json:"new-meter-value"`
+	PreMeterValue float64 `json:"pre_meter_value"`
+	NewMeterValue float64 `json:"new_meter_value"`
 	Bill          float64 `json:"bill"`
 	AdditionalFee float64 `json:"additional_fee"`
 	Remark        string  `json:"remark"`
 	Period        string  `json:"period"`
+	RoomID        string  `json:"room_id"`
 }
